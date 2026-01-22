@@ -1,0 +1,356 @@
+/* --- Variables y Configuración Global --- */
+:root {
+    --primary-green: #2ecc71;
+    --tech-blue: #3498db;
+    --dark-blue: #2c3e50;
+    --light-bg: #f8f9fa;
+    --gradient-main: linear-gradient(135deg, #2ecc71 0%, #3498db 100%);
+    --gradient-overlay: linear-gradient(180deg, rgba(46, 204, 113, 0.4) 0%, rgba(52, 152, 219, 0.8) 100%);
+    --font-heading: 'Montserrat', sans-serif;
+    --font-body: 'Poppins', sans-serif;
+}
+
+body {
+    font-family: var(--font-body);
+    overflow-x: hidden;
+    color: var(--dark-blue);
+}
+
+h1, h2, h3, h4 {
+    font-family: var(--font-heading);
+}
+
+/* --- 1. Navbar Estilizado --- */
+.navbar {
+    padding: 1.5rem 0;
+    transition: all 0.4s ease;
+}
+
+.navbar.scrolled {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    padding: 0.8rem 0;
+}
+
+.nav-logo {
+    height: 40px;
+    width: auto;
+    border-radius: 50%;
+}
+
+.brand-text {
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: #fff;
+    transition: color 0.3s;
+}
+
+.navbar.scrolled .brand-text, 
+.navbar.scrolled .nav-link {
+    color: var(--dark-blue);
+}
+
+.nav-link {
+    color: #fff;
+    font-weight: 500;
+    margin: 0 10px;
+    position: relative;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background: var(--primary-green);
+    transition: width 0.3s;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+/* --- 2. Hero Section Parallax --- */
+.hero-section {
+    position: fixed; /* Sticky effect base */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: -1; /* Se queda detrás del contenido */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.hero-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80') no-repeat center center/cover;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--gradient-overlay);
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    color: white;
+    max-width: 800px;
+    padding: 20px;
+}
+
+.hero-title {
+    font-size: 3.5rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    text-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.highlight-text {
+    color: #fff;
+    background: linear-gradient(90deg, #fff, #bbf7d0);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.btn-cta {
+    background: white;
+    color: var(--tech-blue);
+    font-weight: 700;
+    padding: 12px 35px;
+    border-radius: 50px;
+    transition: all 0.3s;
+    box-shadow: 0 0 20px rgba(255,255,255,0.4);
+}
+
+.btn-cta:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 30px rgba(255,255,255,0.6);
+    color: var(--primary-green);
+}
+
+/* Main content wrapper para cubrir el hero fijo */
+.main-content {
+    position: relative;
+    top: 100vh; /* Empieza después del viewport */
+    background: white;
+    z-index: 10;
+    box-shadow: 0 -10px 30px rgba(0,0,0,0.1);
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+}
+
+/* --- 3. Sección Flip Cards --- */
+.section-padding {
+    padding: 100px 0;
+}
+
+.text-gradient {
+    background: var(--gradient-main);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.flip-card {
+    background-color: transparent;
+    width: 100%;
+    height: 300px;
+    perspective: 1000px; 
+    cursor: pointer;
+}
+
+.flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    border-radius: 20px;
+}
+
+.flip-card:hover .flip-card-inner {
+    transform: rotateY(180deg);
+}
+
+.flip-card-front, .flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.flip-card-front {
+    background-color: white;
+    border: 1px solid #eee;
+}
+
+.card-icon {
+    font-size: 4rem;
+    margin-bottom: 20px;
+    background: var(--gradient-main);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.flip-card-back {
+    background: var(--gradient-main);
+    color: white;
+    transform: rotateY(180deg);
+}
+
+/* --- 4. Sección Team (Hover Reveal) --- */
+.bg-light-gradient {
+    background: linear-gradient(180deg, #ffffff 0%, #f0f4f8 100%);
+}
+
+.team-card {
+    position: relative;
+    height: 400px;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    cursor: pointer;
+}
+
+.team-img-wrapper {
+    height: 100%;
+    width: 100%;
+    transition: all 0.5s ease;
+}
+
+.team-img-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s;
+}
+
+.team-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(0px); /* Inicialmente sin blur */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: all 0.4s ease;
+}
+
+/* Efectos Hover */
+.team-card:hover .team-img-wrapper {
+    filter: blur(8px);
+    transform: scale(1.1);
+}
+
+.team-card:hover .team-overlay {
+    opacity: 1;
+    backdrop-filter: blur(5px);
+    background: rgba(44, 62, 80, 0.7); 
+}
+
+.team-info {
+    text-align: center;
+    color: white;
+    padding: 20px;
+}
+
+/* Animaciones de texto en cascada */
+.drop-text {
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: all 0.4s ease;
+}
+
+.team-card:hover .drop-text {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.team-card:hover .drop-text.delay-1 { transition-delay: 0.1s; }
+.team-card:hover .drop-text.delay-2 { transition-delay: 0.2s; }
+.team-card:hover .drop-text.delay-3 { transition-delay: 0.3s; }
+
+.age-badge {
+    display: inline-block;
+    background: var(--primary-green);
+    padding: 2px 10px;
+    border-radius: 10px;
+    font-size: 0.8rem;
+    margin-bottom: 5px;
+}
+
+.social-links a {
+    color: white;
+    margin: 0 8px;
+    font-size: 1.2rem;
+    transition: color 0.3s;
+}
+
+.social-links a:hover {
+    color: var(--primary-green);
+}
+
+.footer {
+    background: var(--dark-blue);
+}
+
+/* --- Animaciones Generales --- */
+.pulse-animation {
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7); }
+    70% { box-shadow: 0 0 0 15px rgba(255, 255, 255, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); }
+}
+
+/* Clases para Intersection Observer JS */
+.scroll-animate {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease-out;
+}
+
+.scroll-animate.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.delay-1 { transition-delay: 0.2s; }
+.delay-2 { transition-delay: 0.4s; }
+.delay-3 { transition-delay: 0.6s; }
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .hero-title { font-size: 2.5rem; }
+    .flip-card { height: 260px; }
+}
