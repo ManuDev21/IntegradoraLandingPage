@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-    const words = ["Reciclaje.", "Intercambio.", "Planeta."];
+    const words = ["Innovación Digital.", "Tecnología.", "Programación de Sistemas"];
     let i = 0;
     let timer;
 
